@@ -1,9 +1,37 @@
 <template>
-  <div class="my-items">
-    <div v-for="item in products" :key="item.id">
-      <h1>{{item.title}}</h1>
-    </div>
-  </div>
+  <v-card
+    class="mx-auto"
+    max-width="344"
+    outlined
+  >
+    <v-list-item three-line  v-for="product in products">
+      <v-list-item-content>
+        <div class="overline mb-4">
+          OVERLINE
+        </div>
+        <v-list-item-title class="headline mb-1">
+          {{ product.title }}
+        </v-list-item-title>
+        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+      </v-list-item-content>
+
+      <v-list-item-avatar
+        tile
+        size="80"
+        color="grey"
+      ></v-list-item-avatar>
+    </v-list-item>
+
+    <v-card-actions>
+      <v-btn
+        outlined
+        rounded
+        text
+      >
+        Button
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 
