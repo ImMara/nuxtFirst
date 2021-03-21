@@ -17,7 +17,6 @@
             </v-list-item-title>
             <v-list-item-subtitle>{{ product.description }}</v-list-item-subtitle>
           </v-list-item-content>
-
         </v-list-item>
 
         <v-card-actions>
@@ -25,6 +24,7 @@
             outlined
             rounded
             text
+            @click="addProduct()"
           >
             Edit
           </v-btn>
@@ -35,16 +35,21 @@
   </v-container>
 </template>
 
-
 <script>
-  import { createNamespacedHelpers } from 'vuex'
-  const { mapState, mapActions } = createNamespacedHelpers('products')
+
+
+import mapMutations from "vuex/dist/vuex.mjs";
+import mapActions from "vuex/dist/vuex.mjs";
 
 export default {
   name: "index",
   data () {
     return {
-      msg: 'Welcome to my Vuex Store'
+      newProduct:{
+        title: "testitem",
+        description: "test description",
+        price: "4555"
+      }
     }
   },
   computed:{
@@ -52,8 +57,22 @@ export default {
       return this.$store.state.product.products
     }
   },
+  methods :{
+    addProduct (){
+      // COMMIT RECHERCHE MUTATION POUR LOCAL
+      // this.$store.commit('product/ADD_PRODUCTS', {
+      //   title: "test",
+      //   description: "test description",
+      //   price: "4555"
+      // })
+      // DISPATCH RECHERCHE POUR API
+      this.$store.dispatch('product/postProducts',{
+       ...this.newProduct
+      })
+    }
+  },
   mounted (){
-    this.$store.dispatch("product/getProducts")
+    this.$store.dispatch('product/getProducts')
   }
 }
 </script>
